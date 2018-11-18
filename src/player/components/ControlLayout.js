@@ -7,7 +7,7 @@ function ControlLayout({ children }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "rgba(255,255,255,.3)",
+    backgroundColor: "rgba(0,0,0,.3)",
     position: "absolute",
     left: 0,
     right: 0,

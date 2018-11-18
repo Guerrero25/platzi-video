@@ -6,18 +6,19 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback
 } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 function PlayPause({ onPress, paused }) {
   return (
     <TouchableHighlight
       style={styles.container}
       onPress={onPress}
-      underlayColor="#70b124"
+      underlayColor="none"
     >
       {paused ? (
-        <Text style={styles.text}>PLAY</Text>
+        <Icon name="play" color="#70b124" size={25} />
       ) : (
-        <Text style={styles.text}>PAUSE</Text>
+        <Icon name="pause" color="#70b124" size={25} />
       )}
     </TouchableHighlight>
   );
@@ -27,16 +28,11 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     paddingHorizontal: 10,
-    height: 25,
     marginRight: 10,
-    marginVertical: 5,
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: "white",
-    backgroundColor: "#70b124"
+    marginVertical: 5
   },
-  text: {
-    color: "white"
+  icon: {
+    color: "#70b124"
   }
 });
 
