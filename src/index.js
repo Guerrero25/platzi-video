@@ -9,6 +9,7 @@ import Header from "./sections/components/Header";
 import SuggestionList from "./videos/containers/SuggestionList";
 import CategoryList from "./videos/containers/CategoryList";
 import Movie from "./screens/containers/Movie";
+import Seacrh from "./sections/containers/Seacrh";
 
 class AppLayout extends Component {
   render() {
@@ -21,7 +22,7 @@ class AppLayout extends Component {
         <Header>
           <Text>I'm the children</Text>
         </Header>
-        <Text>buscador</Text>
+        <Seacrh />
         <CategoryList />
         <SuggestionList />
       </Home>

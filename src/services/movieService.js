@@ -16,6 +16,15 @@ class MovieService {
 
     return data.movies;
   }
+
+  async searchMovie(query) {
+    const request = await fetch(
+      `${BASE_API}list_movies.json?limit=1&sort_by=raiting&query_term=${query}`
+    );
+    const { data } = await request.json();
+
+    return data.movies;
+  }
 }
 
 export default new MovieService();
