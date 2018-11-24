@@ -1,32 +1,35 @@
 import React, { Component } from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList } from "react-native";
 /* Componets */
 import Layout from "../components/ListLayout";
 import EmptyList from "../components/EmptyList";
 import HorizontalSeparator from "../../sections/components/HorizontalSeparator";
 import Category from "../components/Categoty";
 import Loader from "../../sections/components/Loader";
+/* Redux */
+import { connect } from "react-redux";
+import { setCategoryList } from "../../../redux/actions/videos";
 /* Services */
 import MovieService from "../../services/movieService";
 
 type Props = {};
 class CategoryList extends Component<Props> {
   state = {
-    categoryList: [],
     loading: true
   };
 
   async componentDidMount() {
     const categories = await MovieService.getMovies();
 
+    this.props.setCategoryList(categories);
+
     this.setState({
-      categoryList: categories,
       loading: false
     });
   }
 
   render() {
-    const { categoryList } = this.state;
+    const { categoryList } = this.props;
 
     return (
       <Layout
@@ -59,4 +62,13 @@ class CategoryList extends Component<Props> {
   keyExtractor = item => `${item.id}`;
 }
 
-export default CategoryList;
+function mapStateToProps(state) {
+  return {
+    categoryList: state.categoryList
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { setCategoryList }
+)(CategoryList);

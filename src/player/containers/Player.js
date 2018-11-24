@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { ActivityIndicator, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { connect } from "react-redux";
 /* Componets */
 import Video from "react-native-video";
 import Layout from "../components/PlayerLayout";
@@ -65,4 +66,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Player;
+export default connect()(Player);

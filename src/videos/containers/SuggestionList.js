@@ -6,33 +6,38 @@ import EmptyList from "../components/EmptyList";
 import VerticalSeparator from "../../sections/components/VerticalSeparator";
 import Suggestion from "../components/Suggestion";
 import Loader from "../../sections/components/Loader";
+/* Redux */
+import { connect } from "react-redux";
+import { setSugestionList } from "../../../redux/actions/videos";
 /* Services */
 import MovieService from "../../services/movieService";
 
 type Props = {};
 class SuggestionList extends Component<Props> {
   state = {
-    suggestionListMovies: [],
     loading: true
   };
 
   async componentDidMount() {
     const movies = await MovieService.getSuggestions(9);
 
+    console.log(movies);
+
+    this.props.setSugestionList(movies);
+
     this.setState({
-      suggestionListMovies: movies,
       loading: false
     });
   }
 
   render() {
-    const { suggestionListMovies, loading } = this.state;
+    const { sugestionList } = this.props;
 
     return (
       <Layout title="Recomendados para ti">
         <FlatList
           keyExtractor={this.keyExtractor}
-          data={suggestionListMovies}
+          data={sugestionList}
           renderItem={this.renderItem}
           ItemSeparatorComponent={this.itemSeparator}
           ListEmptyComponent={this.renderEmpty}
@@ -58,4 +63,13 @@ class SuggestionList extends Component<Props> {
   keyExtractor = item => `${item.id}`;
 }
 
-export default SuggestionList;
+function mapStateToProps(state) {
+  return {
+    sugestionList: state.sugestionList
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { setSugestionList }
+)(SuggestionList);

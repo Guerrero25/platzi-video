@@ -13,7 +13,7 @@ function PlayPause({ onPress, paused }) {
     <TouchableHighlight
       style={styles.container}
       onPress={onPress}
-      underlayColor="none"
+      underlayColor="transparent"
     >
       {paused ? (
         <Icon name="play" color="#70b124" size={25} />
