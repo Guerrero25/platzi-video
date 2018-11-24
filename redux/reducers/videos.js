@@ -1,4 +1,8 @@
-import { SET_CATEGORY_LIST, SET_SUGESTION_LIST } from "../constains";
+import {
+  SET_CATEGORY_LIST,
+  SET_SUGESTION_LIST,
+  SET_SELECTED_MOVIE
+} from "../constains";
 import { combineReducers } from "redux";
 
 function categoryList(state = [], action) {
@@ -21,4 +25,14 @@ function sugestionList(state = [], action) {
   }
 }
 
-export default combineReducers({ categoryList, sugestionList });
+function selectedMovie(state = null, action) {
+  switch (action.type) {
+    case SET_SELECTED_MOVIE:
+      return action.payload;
+
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({ categoryList, sugestionList, selectedMovie });

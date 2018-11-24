@@ -1,4 +1,8 @@
-import { SET_CATEGORY_LIST, SET_SUGESTION_LIST } from "../constains";
+import {
+  SET_CATEGORY_LIST,
+  SET_SUGESTION_LIST,
+  SET_SELECTED_MOVIE
+} from "../constains";
 
 export function setCategoryList(categories) {
   return {
@@ -15,5 +19,12 @@ export function setSugestionList(sugestions) {
     payload: {
       sugestions
     }
+  };
+}
+
+export function selectMovie(movie) {
+  return {
+    type: SET_SELECTED_MOVIE,
+    payload: movie
   };
 }

@@ -4,8 +4,9 @@ import reducers from "./reducers/videos";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 const persistConfig = {
+  storage,
   key: "root",
-  storage
+  blacklist: ["selectedMovie"]
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

@@ -8,7 +8,7 @@ import Suggestion from "../components/Suggestion";
 import Loader from "../../sections/components/Loader";
 /* Redux */
 import { connect } from "react-redux";
-import { setSugestionList } from "../../../redux/actions/videos";
+import { setSugestionList, selectMovie } from "../../../redux/actions/videos";
 /* Services */
 import MovieService from "../../services/movieService";
 
@@ -20,8 +20,6 @@ class SuggestionList extends Component<Props> {
 
   async componentDidMount() {
     const movies = await MovieService.getSuggestions(9);
-
-    console.log(movies);
 
     this.props.setSugestionList(movies);
 
@@ -58,9 +56,15 @@ class SuggestionList extends Component<Props> {
 
   itemSeparator = () => <VerticalSeparator />;
 
-  renderItem = ({ item }) => <Suggestion {...item} />;
+  renderItem = ({ item }) => (
+    <Suggestion {...item} onPress={() => this.viewMovie(item)} />
+  );
 
   keyExtractor = item => `${item.id}`;
+
+  viewMovie = item => {
+    this.props.selectMovie(item);
+  };
 }
 
 function mapStateToProps(state) {
@@ -71,5 +75,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { setSugestionList }
+  { setSugestionList, selectMovie }
 )(SuggestionList);
