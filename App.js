@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./redux/store";
 import Loading from "./src/sections/components/Loading";
-import AppLayout from "./src";
+import AppNavigatorWithState from "./src/app-navigator-with-state";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -19,7 +19,7 @@ export default class App extends Component<Props> {
     return (
       <Provider store={store}>
         <PersistGate loading={<Loading />} persistor={persistor}>
-          <AppLayout />
+          <AppNavigatorWithState />
         </PersistGate>
       </Provider>
     );

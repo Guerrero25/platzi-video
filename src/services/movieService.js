@@ -11,7 +11,9 @@ class MovieService {
   }
 
   async getMovies() {
-    const request = await fetch(`${BASE_API}list_movies.json?`);
+    const request = await fetch(`${BASE_API}list_movies.json?`).catch(err =>
+      console.log(err)
+    );
     const { data } = await request.json();
 
     return data.movies;
@@ -20,7 +22,7 @@ class MovieService {
   async searchMovie(query) {
     const request = await fetch(
       `${BASE_API}list_movies.json?limit=1&sort_by=raiting&query_term=${query}`
-    );
+    ).catch(err => console.log(err));
     const { data } = await request.json();
 
     return data.movies;

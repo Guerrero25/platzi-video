@@ -69,7 +69,7 @@ class SuggestionList extends Component<Props> {
 
 function mapStateToProps(state) {
   return {
-    sugestionList: state.sugestionList
+    sugestionList: state.videos.sugestionList
   };
 }
 
